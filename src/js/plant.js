@@ -14,7 +14,8 @@ const storeState = () => {
   }
   
   const stateControl = storeState();
-  
+  const pineTreeControl = stateControl({ soil: 5, water: 2 });
+//   const pineTree = pineTreeControl();
   // This is a function factory. We can easily create more specific functions that alter a plant's soil, water, and light to varying degrees.
   
   const changeState = (prop) => {
@@ -33,29 +34,30 @@ const storeState = () => {
   
   const hydrate = changeState("water")(1);
   const superWater = changeState("water")(5);
-//   const plantStart = changeState("soil")(5);
+
+
 
 	$(document).ready(function() {
   
 		// This function has side effects because we are using jQuery. Manipulating the DOM will always be a side effect. Note that we only use one of our functions to alter soil. You can easily add more.
 		
 		$('#feed').click(function() {
-			const newState = stateControl(feed);
+			const newState = pineTreeControl(feed);
 			$('#soil-value').text(`${newState.soil}`);
 		});
 
 		$('#blueFood').click(function() {
-			const newState = stateControl(blueFood);
+			const newState = pineTreeControl(blueFood);
 			$('#soil-value').text(`${newState.soil}`);
 		});
 		
 		$('#hydrate').click(function() {
-			const newState = stateControl(hydrate);
+			const newState = pineTreeControl(hydrate);
 			$('#hydration-value').text(`${newState.water}`);
 		});
 
 		$('#superWater').click(function() {
-			const newState = stateControl(superWater);
+			const newState = pineTreeControl(superWater);
 			$('#hydration-value').text(`${newState.water}`);
 		});
 
@@ -64,7 +66,7 @@ const storeState = () => {
 		
 		$('#show-state').click(function() {
 			// We just need to call stateControl() without arguments to see our current state.
-			const currentState = stateControl();
+			const currentState = pineTreeControl();
 			$('#soil-value').text(`${currentState.soil}`);
 			$('#hydration-value').text(`${currentState.water}`);
 		});
